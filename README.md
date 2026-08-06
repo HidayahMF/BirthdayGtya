@@ -1,2 +1,0 @@
-# BirthdayGtya
-Web
