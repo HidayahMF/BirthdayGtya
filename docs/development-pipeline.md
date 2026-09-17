@@ -1,87 +1,99 @@
-# BirthdayGtya — Development Pipeline
+# 🎂 BirthdayGtya — Engineering Blueprint
 
-> Code-grounded status and implementation guide for the current repository snapshot. Reviewed from `main` at `d158a5e7c96c` on 2026-09-17.
+> A source-grounded blueprint for turning the current placeholder repository into a small, polished birthday experience without pretending unfinished features already exist.
 
-The repository is currently a placeholder for a birthday web page. Both tracked source files are empty, so this guide separates the current state from a proposed implementation path.
+**Reviewed snapshot:** `main` @ [`d158a5e7c96c`](https://github.com/HidayahMF/BirthdayGtya/commit/d158a5e7c96c6f535ad0dfa18c6fdb126dce3da2) — 2026-09-17
 
-## 1. Current repository state
+## ⚡ Project pulse
+
+| Layer | Current state |
+| --- | --- |
+| UI | `home.html` exists but is empty |
+| Client logic | `location.js` exists but is empty |
+| Backend / API | Not present |
+| Database | Not present |
+| Automated tests | Not present |
+| CI workflow | No `.github/workflows/` found |
+
+## 🧭 Target experience flow
 
 ```mermaid
 flowchart LR
-    H[home.html] -->|0 bytes| EMPTY[No implemented page]
-    L[location.js] -->|0 bytes| EMPTY
+    V[Visitor opens page] --> H[Birthday landing experience]
+    H --> C[Message / visual content]
+    C --> I{Optional interaction?}
+    I -->|No| E[Finish experience]
+    I -->|Yes| P[Explicit user action]
+    P --> J[Client-side behavior]
+    J --> E
 ```
 
-There is no package manifest, framework runtime, build system, database, or automated test suite in the reviewed snapshot.
+The key rule for this repository is simple: **optional browser capabilities must remain explicit and user-triggered**. Nothing in the current source justifies silently requesting location or claiming a live feature exists.
 
-## 2. Proposed page pipeline
+## 🏗️ Current architecture
 
 ```mermaid
 flowchart TD
-    IDEA[Define Birthday Page Content] --> HTML[Build home.html]
-    HTML --> STYLE[Add Layout / Styling]
-    STYLE --> INTERACT[Add Optional Interaction]
-    INTERACT --> LOCATION{Location feature actually needed?}
-    LOCATION -->|Yes| CONSENT[Explicit user permission]
-    CONSENT --> JS[Implement location.js]
-    LOCATION -->|No| PREVIEW[Skip location code]
-    JS --> PREVIEW[Browser Preview]
-    PREVIEW --> ACCESS[Accessibility + Mobile Check]
-    ACCESS --> PUBLISH[Publish]
-```
-
-## 3. Suggested architecture if kept simple
-
-```mermaid
-flowchart LR
     B[Browser] --> H[home.html]
-    H --> CSS[CSS / visual assets]
-    H --> JS[Optional JavaScript]
-    JS --> GEO[Optional Browser Geolocation API]
+    H -. planned client behavior .-> L[location.js]
+
+    classDef pending stroke-dasharray: 5 5
+    class L pending
 ```
 
-For a small birthday page, a static HTML/CSS/JS implementation is enough unless real application requirements emerge.
+There is currently no server, API, package manifest, build tool, or database behind this diagram.
 
-## 4. Development workflow
+## 🗺️ Source map
+
+| File | Responsibility | Status |
+| --- | --- | --- |
+| [`home.html`](https://github.com/HidayahMF/BirthdayGtya/blob/d158a5e7c96c6f535ad0dfa18c6fdb126dce3da2/home.html) | Main browser entry | Empty placeholder |
+| [`location.js`](https://github.com/HidayahMF/BirthdayGtya/blob/d158a5e7c96c6f535ad0dfa18c6fdb126dce3da2/location.js) | Optional browser behavior | Empty placeholder |
+
+## 🚀 Development → release pipeline
 
 ```mermaid
 flowchart LR
-    EDIT[Edit static files] --> PREVIEW[Open local preview]
-    PREVIEW --> MOBILE[Responsive check]
-    MOBILE --> KEYBOARD[Keyboard/accessibility check]
-    KEYBOARD --> LINKS[Links/assets check]
-    LINKS --> REVIEW[Review diff]
-    REVIEW --> DEPLOY[Static hosting]
+    A[Define experience] --> B[Build semantic HTML]
+    B --> C[Add optional JS]
+    C --> D[Mobile + keyboard review]
+    D --> E[Browser smoke test]
+    E --> F[Review diff]
+    F --> G[Publish static page]
 ```
 
-No repository-defined commands currently exist because no package/composer manifest is present.
+### Quality gates
 
-## 5. Verification gates
+| Gate | Pass condition |
+| --- | --- |
+| Content | Page contains meaningful birthday content |
+| Accessibility | Interactive controls work with keyboard and have labels |
+| Privacy | Sensitive browser permissions are explicit and optional |
+| Responsive UI | Layout remains usable on narrow screens |
+| Runtime | Page loads without console-breaking script errors |
 
-Before publishing an implementation:
+## 🧪 Acceptance checklist
 
-- `home.html` contains meaningful content.
-- Scripts load without browser console errors.
-- Layout remains readable on mobile and desktop.
-- Buttons/links can be used with keyboard input.
-- Images and external links load correctly.
-- Any location request is optional, clearly explained, and triggered only when necessary.
-- The page still works when location permission is denied.
+- Open the page directly in a browser and verify useful content renders.
+- Test keyboard navigation through every interactive control.
+- Test a narrow mobile viewport and a desktop viewport.
+- Confirm scripts load without uncaught errors.
+- If location behavior is added later, verify the page still works when permission is denied.
 
-## 6. Current vs planned
+## ⚠️ Risk radar
 
-```mermaid
-flowchart TD
-    CURRENT[Current source] --> EMPTY[2 empty files]
-    PLANNED[Possible future implementation] --> PAGE[Birthday page]
-    PLANNED --> OPTIONAL[Optional location interaction]
-```
+| Risk | Why it matters | Recommended guardrail |
+| --- | --- | --- |
+| Empty source | There is no working product yet | Keep documentation explicit about implementation status |
+| Permission UX | Browser location can feel intrusive | Ask only after clear user action and make it optional |
+| No automated checks | Regressions can slip through easily | Add lightweight validation only after real implementation exists |
 
-Do not describe the planned page/location behavior as implemented until source code actually exists.
+## 📌 What “done” looks like
 
-## 7. Source map
+A finished first version should be a small static experience that renders reliably, behaves well on mobile, and does not depend on hidden services. Add tooling only when the project actually needs it.
 
-- [`home.html`](https://github.com/HidayahMF/BirthdayGtya/blob/d158a5e7c96c6f535ad0dfa18c6fdb126dce3da2/home.html) — empty placeholder
-- [`location.js`](https://github.com/HidayahMF/BirthdayGtya/blob/d158a5e7c96c6f535ad0dfa18c6fdb126dce3da2/location.js) — empty placeholder
+---
 
-Update this document after real page code is introduced so the diagrams describe actual behavior rather than the proposed path.
+### Keeping this blueprint accurate
+
+Update the reviewed commit and diagrams whenever the entry point, browser behavior, or deployment model changes. Planned features should stay visibly separated from implemented behavior.
