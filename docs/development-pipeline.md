@@ -1,68 +1,87 @@
 # BirthdayGtya — Development Pipeline
 
-Placeholder repository for a birthday web page. Both tracked source files are empty; no working page or location feature can be inferred.
+> Code-grounded status and implementation guide for the current repository snapshot. Reviewed from `main` at `d158a5e7c96c` on 2026-09-17.
 
-> Source review: **2026-09-17**, branch `main`, commit [`d158a5e7c96c`](https://github.com/HidayahMF/BirthdayGtya/commit/d158a5e7c96c6f535ad0dfa18c6fdb126dce3da2). This is a code-grounded implementation overview and development guide, not a reconstructed historical timeline or a claim that runtime tests passed.
+The repository is currently a placeholder for a birthday web page. Both tracked source files are empty, so this guide separates the current state from a proposed implementation path.
 
-## At a glance
+## 1. Current repository state
 
-| Area | Finding |
-| --- | --- |
-| Review scope | Repository tree, dependency manifests, and selected entry points/domain implementations linked below |
-| Automated CI | No files under `.github/workflows/` in this source snapshot |
-| Validation performed | Static source and documentation review; application builds, tests, databases, and external services were not executed |
+```mermaid
+flowchart LR
+    H[home.html] -->|0 bytes| EMPTY[No implemented page]
+    L[location.js] -->|0 bytes| EMPTY
+```
 
-## Current implementation and proposed next steps
+There is no package manifest, framework runtime, build system, database, or automated test suite in the reviewed snapshot.
 
-1. Define the page content and interactions; implementation is pending.
+## 2. Proposed page pipeline
 
-2. Implement the HTML entry in home.html and only add location.js behavior when required.
+```mermaid
+flowchart TD
+    IDEA[Define Birthday Page Content] --> HTML[Build home.html]
+    HTML --> STYLE[Add Layout / Styling]
+    STYLE --> INTERACT[Add Optional Interaction]
+    INTERACT --> LOCATION{Location feature actually needed?}
+    LOCATION -->|Yes| CONSENT[Explicit user permission]
+    CONSENT --> JS[Implement location.js]
+    LOCATION -->|No| PREVIEW[Skip location code]
+    JS --> PREVIEW[Browser Preview]
+    PREVIEW --> ACCESS[Accessibility + Mobile Check]
+    ACCESS --> PUBLISH[Publish]
+```
 
-3. Preview the page and verify links, keyboard access, and mobile layout before publishing.
+## 3. Suggested architecture if kept simple
 
-## Source map
+```mermaid
+flowchart LR
+    B[Browser] --> H[home.html]
+    H --> CSS[CSS / visual assets]
+    H --> JS[Optional JavaScript]
+    JS --> GEO[Optional Browser Geolocation API]
+```
 
-Principal source files used for this overview, pinned to the reviewed commit:
+For a small birthday page, a static HTML/CSS/JS implementation is enough unless real application requirements emerge.
 
-- [home.html](https://github.com/HidayahMF/BirthdayGtya/blob/d158a5e7c96c6f535ad0dfa18c6fdb126dce3da2/home.html) — empty placeholder
-- [location.js](https://github.com/HidayahMF/BirthdayGtya/blob/d158a5e7c96c6f535ad0dfa18c6fdb126dce3da2/location.js) — empty placeholder
+## 4. Development workflow
 
-## Technology and commands
+```mermaid
+flowchart LR
+    EDIT[Edit static files] --> PREVIEW[Open local preview]
+    PREVIEW --> MOBILE[Responsive check]
+    MOBILE --> KEYBOARD[Keyboard/accessibility check]
+    KEYBOARD --> LINKS[Links/assets check]
+    LINKS --> REVIEW[Review diff]
+    REVIEW --> DEPLOY[Static hosting]
+```
 
-No package/composer manifest is present in this snapshot. Use the repository-specific source map and validation criteria instead of assuming an npm application.
+No repository-defined commands currently exist because no package/composer manifest is present.
 
-No manifest-defined development, build, or test commands are available.
+## 5. Verification gates
 
-## Development sequence
+Before publishing an implementation:
 
-| Stage | Work | Completion evidence |
-| --- | --- | --- |
-| 1. Establish scope | Read the source map and limitations; choose one concrete behavior to change. | Expected input, output, and failure behavior. |
-| 2. Prepare environment | Use the manifests and configuration references. | Required local services reachable with synthetic data. |
-| 3. Implement | Follow the implemented flow and update the layer that owns the behavior. | Focused diff with matching caller/callee contracts. |
-| 4. Validate | Run applicable declared checks and the scenarios below. | Recorded commands, results, and untested dependencies. |
-| 5. Review and release | Review the diff and update documentation; release after environment checks. | Reviewed change and target-environment smoke check. |
+- `home.html` contains meaningful content.
+- Scripts load without browser console errors.
+- Layout remains readable on mobile and desktop.
+- Buttons/links can be used with keyboard input.
+- Images and external links load correctly.
+- Any location request is optional, clearly explained, and triggered only when necessary.
+- The page still works when location permission is denied.
 
-These stages are a recommended maintenance sequence, not a historical timeline.
+## 6. Current vs planned
 
-## Configuration and runtime prerequisites
+```mermaid
+flowchart TD
+    CURRENT[Current source] --> EMPTY[2 empty files]
+    PLANNED[Possible future implementation] --> PAGE[Birthday page]
+    PLANNED --> OPTIONAL[Optional location interaction]
+```
 
-No standard example-environment, container, or test-runner configuration matched the scanned inventory. Consult the source map for runtime assumptions.
+Do not describe the planned page/location behavior as implemented until source code actually exists.
 
-Configuration-file presence does not prove deployment success. Keep credentials outside version control and use synthetic records during setup.
+## 7. Source map
 
-## Verification plan
+- [`home.html`](https://github.com/HidayahMF/BirthdayGtya/blob/d158a5e7c96c6f535ad0dfa18c6fdb126dce3da2/home.html) — empty placeholder
+- [`location.js`](https://github.com/HidayahMF/BirthdayGtya/blob/d158a5e7c96c6f535ad0dfa18c6fdb126dce3da2/location.js) — empty placeholder
 
-The page renders meaningful content; scripts load without errors; any location request is explicit and optional.
-
-No conventional test files were found in the scanned tree. The scenarios above are proposed acceptance checks, not existing automated coverage.
-
-## Known limitations and next work
-
-home.html and location.js are both zero bytes. There is no package manifest, build process, or implemented runtime to document.
-
-Prioritize the acceptance checks above before expanding the feature set. A declared test command or example test does not establish production readiness.
-
-## Keeping this document accurate
-
-Update the source snapshot and affected flow when entry points, persistence, authentication, or integration contracts change. Keep planned capabilities separate from implemented behavior, and record actual build/test results only after running them.
+Update this document after real page code is introduced so the diagrams describe actual behavior rather than the proposed path.
